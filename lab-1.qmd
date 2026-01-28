@@ -135,6 +135,20 @@ I also think the graph from question 3 is still useful in seeing the larger imag
 
 ### Question 5
 
+```{r}
+ggplot(midwest, aes(x = state, y = area)) +
+  geom_boxplot() +
+  labs(
+    title = "County area by state in the Midwest",
+    x = "State",
+    y = "County area"
+  )
+```
+
+The side by side box plots show the differences in county area across the states. Some states such as MI and WI have larger county sizes, while others such as IN and OH have smaller sized counties. The variability of county area also differs across states, with certain states showing a water range of county sizes such as WI and IL, as indicated by the longer boxes and plot length. In comparison to IN and OH which have smaller boxes and less spread out data points.
+
+Michigan is the state that contains the largest county in the data set. Marquette County, Michigan is the largest county by area, and its size is quite a big larger then the next closest data point.
+
 ### Question 6
 
 ### Question 7
