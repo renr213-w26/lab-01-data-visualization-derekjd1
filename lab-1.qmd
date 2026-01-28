@@ -170,6 +170,29 @@ The initial information I gained from the plot is that no state has over 50% of 
 
 ### Question 7
 
+```{r}
+ggplot(midwest,aes(
+  x = percollege,
+  y = percbelowpoverty,
+  color = percwhite
+  )
+) +
+  geom_point(size = 2, alpha = 0.5) + scale_color_continuous(
+    name = "% White",
+    low = "#1C2951",
+    high = "#95C8D8"
+    ) + facet_wrap(~ state) + theme_minimal() +
+  labs(
+    title = "Comparsion charts of Poverty, Education, and Racial Compistion per state",
+    x = "% college educated",
+    y = "% below poverty line "
+  )
+```
+
+I obtained my Blue hex values from: https://louisem.com/417898/blue-hex-codes
+
+In Wisconsin, most counties are clustered with low poverty rates and around 20% of the population being college educated. However the clear outlier is Menominee County, this has a poverty rate of about 48.69% and the primary racial population is American Indian at 89.17%.
+
 ## Part 2
 
 **Enough about the Midwest!**
