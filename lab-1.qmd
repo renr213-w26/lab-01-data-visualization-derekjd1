@@ -62,6 +62,22 @@ ggplot(midwest, aes(x = popdensity)) +
 
 ### Question 2
 
+```{r}
+# Boxplot
+ggplot(midwest, aes(x = popdensity)) +
+  geom_boxplot() +
+  labs(
+    x = "Population density",
+    y = "Count",
+    title = "Population density of midwesten counties"
+)
+
+```
+
+The Distribution of population density among the Midwestern counties has the majority of the values on the left so it is right skewed. Having the majority of the counties on the left means that most have a relatively low population density. But there are several data points that have higher population densities. This pattern is consistent with what was observed in the histograms from Question 1.
+
+The Boxplot shows several high population density outliers. Using the View(midwest) command in the Console, I was able to examine the data more closely and pick out which county was the furthest right. The furthest outlier in the data set is Cook Country, Illinois which as a population density of 88018.3966 which is significantly higher compared to most midwestern counties. Doing a quick Google search it was discovered that this county contains the city of Chicago so this makes sense as this is a major urban city with a large amount of people living in close conditions.
+
 ### Question 3
 
 ### Question 4
