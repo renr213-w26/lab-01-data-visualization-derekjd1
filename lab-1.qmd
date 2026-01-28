@@ -2,6 +2,7 @@
 title: "Lab 1 - Data visualization"
 format: html
 editor: visual
+author: "Derek Dubrule"
 ---
 
 # Questions
