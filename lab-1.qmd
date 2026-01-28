@@ -197,6 +197,30 @@ In Wisconsin, most counties are clustered with low poverty rates and around 20% 
 
 **Enough about the Midwest!**
 
+```{r}
+nc_county <- read_csv("data/nc-county.csv")
+```
+
 ### Question 8
+
+```{r}
+ggplot(
+  nc_county,
+  aes(
+    x = land_area_mi2,
+    y = density
+  )
+) +
+  geom_point() + 
+  labs(
+    title = "Population density in comparison to land area of North Carolina counties",
+    x = "Land area (square miles)",
+    y = "Population density (people per square mile)"
+  )
+```
+
+My guess before creating the plot was that I expected that counties with a lower amount of land area would have higher population densities, thus a negative relationship between land area and population densities.
+
+The scatterplot I created shows that the majority of North Carolina counties have population densities below 500 people per square mile, with only a small number of counties exhibiting much higher densities. While some counties with smaller land areas do have high population densities, the relationship is not as strong as I initially expected. Instead the population density seems to remain relatively low across a wide range of land areas, with a few high density outliers. So overall this plot suggest that land area alone does not strongly determine population density for most counties.
 
 ### Question 9
