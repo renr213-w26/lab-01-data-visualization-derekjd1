@@ -106,6 +106,33 @@ There a few outliers in this data. The first is a county in WI, which appears in
 
 ### Question 4
 
+```{r}
+ggplot(midwest,
+       aes(
+         x = percollege,
+         y = percbelowpoverty,
+         color = state,
+         shape = state)
+       ) +
+  geom_point() +
+  geom_smooth(se = FALSE) +
+  facet_wrap(~ state) +
+  labs(
+    title = "Percentage below poverty in comparison to college education",
+    x = "Percentage of population with a college degree",
+    y = "Percentage of population below poverty",
+    color = "State",
+    shape = "State"
+  )
+
+```
+
+I prefer using the Facet Wrap plot to get a visualization of each state. This helps get rid of the visual cluster from the previous graph. I think its valuable to see that each state follows the same negative relationship between poverty levels and education levels because it is now represented that each state follows the same pattern and the data is not being skewed by one state.
+
+It is also a bit easier to see outliers for each state. This is due to each plot now having to show less data points but I think its another valuable visualization to see the outliers within any given state as opposed to all the states clumped into one graph. While there is still variability within each state, the overall negative association between education and poverty is more apparent in the faceted plot.
+
+I also think the graph from question 3 is still useful in seeing the larger image and serves as an excellent merge of all the plots in question 4. Seeing the individual plots then being able to stack the results against each other really allows for the analysis of the relationship between poverty levels and education levels.
+
 ### Question 5
 
 ### Question 6
