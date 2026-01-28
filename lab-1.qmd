@@ -2,30 +2,246 @@
 title: "Lab 1 - Data visualization"
 format: html
 editor: visual
+author: "Derek Dubrule"
 ---
 
 # Questions
 
 ## Part 1
 
+```{r}
+#| label: load packages
+
+library(tidyverse)
+```
+
 ### Question 1
+
+```{r}
+# Plot Number 1
+ggplot(midwest, aes(x = popdensity)) +
+  geom_histogram(binwidth = 100) +
+  labs(
+    x = "Population density",
+    y = "Count",
+    title = "Population density of midwesten counties",
+    subtitle = "Binwidth = 100"
+)
+
+# Plot Number 2
+ggplot(midwest, aes(x = popdensity)) +
+  geom_histogram(binwidth = 1000) +
+  labs(
+    x = "Population density",
+    y = "Count",
+    title = "Population density of midwesten counties",
+    subtitle = "Binwidth = 1000"
+)
+
+# Plot Number 3
+ggplot(midwest, aes(x = popdensity)) +
+  geom_histogram(binwidth = 10000) +
+  labs(
+    x = "Population density",
+    y = "Count",
+    title = "Population density of midwesten counties",
+    subtitle = "Binwidth = 10000"
+)
+
+# Plot Number 4
+ggplot(midwest, aes(x = popdensity)) +
+  geom_histogram(binwidth = 100000) +
+  labs(
+    x = "Population density",
+    y = "Count",
+    title = "Population density of midwesten counties",
+    subtitle = "Binwidth = 100000"
+)
+
+```
 
 ### Question 2
 
+```{r}
+# Boxplot
+ggplot(midwest, aes(x = popdensity)) +
+  geom_boxplot() +
+  labs(
+    x = "Population density",
+    y = "Count",
+    title = "Population density of midwesten counties"
+)
+
+```
+
+The Distribution of population density among the Midwestern counties has the majority of the values on the left so it is right skewed. Having the majority of the counties on the left means that most have a relatively low population density. But there are several data points that have higher population densities. This pattern is consistent with what was observed in the histograms from Question 1.
+
+The Boxplot shows several high population density outliers. Using the View(midwest) command in the Console, I was able to examine the data more closely and pick out which county was the furthest right. The furthest outlier in the data set is Cook Country, Illinois which as a population density of 88018.3966 which is significantly higher compared to most midwestern counties. Doing a quick Google search it was discovered that this county contains the city of Chicago so this makes sense as this is a major urban city with a large amount of people living in close conditions.
+
 ### Question 3
+
+```{r}
+# Scatterplot
+ggplot(midwest, 
+       aes(
+         x = percollege,
+         y = percbelowpoverty,
+         color = state,
+         shape = state)
+       ) +
+  geom_point() +
+  labs(
+    x = "Percentage of population with a college degree",
+    y = "Percentage of population below poverty",
+    title = "Percentage below poverty vs college education in Midwestern counties",
+    color = "State",
+    shape = "State"
+  )
+  
+```
+
+The plot that was generated shows that most counties located in the bottom left portion, indicating that many Midwestern counties have low percentages of both college educated residents and people living below the poverty line. Despite this clustering in the bottom left, there is still a slight negative relations between people with a college degree and the percentage of people below poverty. This means that counties with higher levels of college education generally tend to have lower poverty rates.
+
+There a few outliers in this data. The first is a county in WI, which appears in the top left portion of the plot, indicating a high poverty rate and a low percentage of the population with a college education. Another outlier is a county in IL. I would assume this is the Cook County as we discussed in the previous question which contains Chicago. This point is located the furthest top right in respect to the other points. This position on the graph shows a higher level of education then most countys but also a higher level of poverty levels then most counties. This could be due to the fact that there is a wide range of education and wages for the people who live in a large metropolitan area.
 
 ### Question 4
 
+```{r}
+ggplot(midwest,
+       aes(
+         x = percollege,
+         y = percbelowpoverty,
+         color = state,
+         shape = state)
+       ) +
+  geom_point() +
+  geom_smooth(se = FALSE) +
+  facet_wrap(~ state) +
+  labs(
+    title = "Percentage below poverty in comparison to college education",
+    x = "Percentage of population with a college degree",
+    y = "Percentage of population below poverty",
+    color = "State",
+    shape = "State"
+  )
+
+```
+
+I prefer using the Facet Wrap plot to get a visualization of each state. This helps get rid of the visual cluster from the previous graph. I think its valuable to see that each state follows the same negative relationship between poverty levels and education levels because it is now represented that each state follows the same pattern and the data is not being skewed by one state.
+
+It is also a bit easier to see outliers for each state. This is due to each plot now having to show less data points but I think its another valuable visualization to see the outliers within any given state as opposed to all the states clumped into one graph. While there is still variability within each state, the overall negative association between education and poverty is more apparent in the faceted plot.
+
+I also think the graph from question 3 is still useful in seeing the larger image and serves as an excellent merge of all the plots in question 4. Seeing the individual plots then being able to stack the results against each other really allows for the analysis of the relationship between poverty levels and education levels.
+
 ### Question 5
+
+```{r}
+ggplot(midwest, aes(x = state, y = area)) +
+  geom_boxplot() +
+  labs(
+    title = "County area by state in the Midwest",
+    x = "State",
+    y = "County area"
+  )
+```
+
+The side by side box plots show the differences in county area across the states. Some states such as MI and WI have larger county sizes, while others such as IN and OH have smaller sized counties. The variability of county area also differs across states, with certain states showing a water range of county sizes such as WI and IL, as indicated by the longer boxes and plot length. In comparison to IN and OH which have smaller boxes and less spread out data points.
+
+Michigan is the state that contains the largest county in the data set. Marquette County, Michigan is the largest county by area, and its size is quite a big larger then the next closest data point.
 
 ### Question 6
 
+```{r}
+
+midwest <- midwest |>
+  mutate(metro = if_else(inmetro == 1, "Yes", "No"))
+
+ggplot(midwest, aes(x = state, fill = metro)) +
+  geom_bar(position = "fill") +
+  labs(
+    title = "Proportion of metropolitan and non-metroplitan counties by state",
+    x = "State",
+    y = "Proportion of counties",
+    fill = "Metropolitan"
+  )
+```
+
+The initial information I gained from the plot is that no state has over 50% of its counties that are metropolitan, thus all 5 are relatively similar in term of how much percentage of their counties are metropolitan or not. From the five states, OH has the largest percentage of Metropolitan cities, while IL and WI are almost identical for the least. OH having the largest percentage could be due to the urbanization across the state and the population concentration contributing the the higher amount of metropolitan states.
+
 ### Question 7
+
+```{r}
+ggplot(midwest,aes(
+  x = percollege,
+  y = percbelowpoverty,
+  color = percwhite
+  )
+) +
+  geom_point(size = 2, alpha = 0.5) + scale_color_continuous(
+    name = "% White",
+    low = "#1C2951",
+    high = "#95C8D8"
+    ) + facet_wrap(~ state) + theme_minimal() +
+  labs(
+    title = "Comparsion charts of Poverty, Education, and Racial Compistion per state",
+    x = "% college educated",
+    y = "% below poverty line "
+  )
+```
+
+I obtained my Blue hex values from: https://louisem.com/417898/blue-hex-codes
+
+In Wisconsin, most counties are clustered with low poverty rates and around 20% of the population being college educated. However the clear outlier is Menominee County, this has a poverty rate of about 48.69% and the primary racial population is American Indian at 89.17%.
 
 ## Part 2
 
 **Enough about the Midwest!**
 
+```{r}
+nc_county <- read_csv("data/nc-county.csv")
+```
+
 ### Question 8
 
+```{r}
+ggplot(
+  nc_county,
+  aes(
+    x = land_area_mi2,
+    y = density
+  )
+) +
+  geom_point() + 
+  labs(
+    title = "Population density in comparison to land area of North Carolina counties",
+    x = "Land area (square miles)",
+    y = "Population density (people per square mile)"
+  )
+```
+
+My guess before creating the plot was that I expected that counties with a lower amount of land area would have higher population densities, thus a negative relationship between land area and population densities.
+
+The scatterplot I created shows that the majority of North Carolina counties have population densities below 500 people per square mile, with only a small number of counties exhibiting much higher densities. While some counties with smaller land areas do have high population densities, the relationship is not as strong as I initially expected. Instead the population density seems to remain relatively low across a wide range of land areas, with a few high density outliers. So overall this plot suggest that land area alone does not strongly determine population density for most counties.
+
 ### Question 9
+
+```{r}
+ggplot(
+  nc_county,
+  aes(
+    x = land_area_m2,
+    y = density
+  )
+) +
+  geom_point() +
+  labs(
+    title = "Population density in comparison to land area of Northern Carolina Counties",
+    x = "Land area (square meters)",
+    y = "Population density (people per square mile)"
+  )
+
+```
+
+The scatterplot from question 8 and this scatterplot are identical in the relationship shown and distribution of the points. In both plots most counties have relatively low population densities, with fewer high density outliers.
+
+They only are different in the unit used for quantifying the x axis. Question 8 uses miles and question 9 uses meters. The different unit used does not affect the positions of the data points and the relationship between the variables. As a result the visual representation of the data remains unchanged despite the different in miles and meters.
