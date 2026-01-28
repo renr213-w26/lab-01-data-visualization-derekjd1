@@ -224,3 +224,24 @@ My guess before creating the plot was that I expected that counties with a lower
 The scatterplot I created shows that the majority of North Carolina counties have population densities below 500 people per square mile, with only a small number of counties exhibiting much higher densities. While some counties with smaller land areas do have high population densities, the relationship is not as strong as I initially expected. Instead the population density seems to remain relatively low across a wide range of land areas, with a few high density outliers. So overall this plot suggest that land area alone does not strongly determine population density for most counties.
 
 ### Question 9
+
+```{r}
+ggplot(
+  nc_county,
+  aes(
+    x = land_area_m2,
+    y = density
+  )
+) +
+  geom_point() +
+  labs(
+    title = "Population density in comparison to land area of Northern Carolina Counties",
+    x = "Land area (square meters)",
+    y = "Population density (people per square mile)"
+  )
+
+```
+
+The scatterplot from question 8 and this scatterplot are identical in the relationship shown and distribution of the points. In both plots most counties have relatively low population densities, with fewer high density outliers.
+
+They only are different in the unit used for quantifying the x axis. Question 8 uses miles and question 9 uses meters. The different unit used does not affect the positions of the data points and the relationship between the variables. As a result the visual representation of the data remains unchanged despite the different in miles and meters.
