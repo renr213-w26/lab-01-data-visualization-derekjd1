@@ -151,6 +151,23 @@ Michigan is the state that contains the largest county in the data set. Marquett
 
 ### Question 6
 
+```{r}
+
+midwest <- midwest |>
+  mutate(metro = if_else(inmetro == 1, "Yes", "No"))
+
+ggplot(midwest, aes(x = state, fill = metro)) +
+  geom_bar(position = "fill") +
+  labs(
+    title = "Proportion of metropolitan and non-metroplitan counties by state",
+    x = "State",
+    y = "Proportion of counties",
+    fill = "Metropolitan"
+  )
+```
+
+The initial information I gained from the plot is that no state has over 50% of its counties that are metropolitan, thus all 5 are relatively similar in term of how much percentage of their counties are metropolitan or not. From the five states, OH has the largest percentage of Metropolitan cities, while IL and WI are almost identical for the least. OH having the largest percentage could be due to the urbanization across the state and the population concentration contributing the the higher amount of metropolitan states.
+
 ### Question 7
 
 ## Part 2
