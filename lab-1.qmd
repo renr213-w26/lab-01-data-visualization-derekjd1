@@ -80,6 +80,30 @@ The Boxplot shows several high population density outliers. Using the View(midwe
 
 ### Question 3
 
+```{r}
+# Scatterplot
+ggplot(midwest, 
+       aes(
+         x = percollege,
+         y = percbelowpoverty,
+         color = state,
+         shape = state)
+       ) +
+  geom_point() +
+  labs(
+    x = "Percentage of population with a college degree",
+    y = "Percentage of population below poverty",
+    title = "Percentage below poverty vs college education in Midwestern counties",
+    color = "State",
+    shape = "State"
+  )
+  
+```
+
+The plot that was generated shows that most counties located in the bottom left portion, indicating that many Midwestern counties have low percentages of both college educated residents and people living below the poverty line. Despite this clustering in the bottom left, there is still a slight negative relations between people with a college degree and the percentage of people below poverty. This means that counties with higher levels of college education generally tend to have lower poverty rates.
+
+There a few outliers in this data. The first is a county in WI, which appears in the top left portion of the plot, indicating a high poverty rate and a low percentage of the population with a college education. Another outlier is a county in IL. I would assume this is the Cook County as we discussed in the previous question which contains Chicago. This point is located the furthest top right in respect to the other points. This position on the graph shows a higher level of education then most countys but also a higher level of poverty levels then most counties. This could be due to the fact that there is a wide range of education and wages for the people who live in a large metropolitan area.
+
 ### Question 4
 
 ### Question 5
