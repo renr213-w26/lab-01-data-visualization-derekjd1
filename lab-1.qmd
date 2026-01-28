@@ -9,7 +9,56 @@ author: "Derek Dubrule"
 
 ## Part 1
 
+```{r}
+#| label: load packages
+
+library(tidyverse)
+```
+
 ### Question 1
+
+```{r}
+# Plot Number 1
+ggplot(midwest, aes(x = popdensity)) +
+  geom_histogram(binwidth = 100) +
+  labs(
+    x = "Population density",
+    y = "Count",
+    title = "Population density of midwesten counties",
+    subtitle = "Binwidth = 100"
+)
+
+# Plot Number 2
+ggplot(midwest, aes(x = popdensity)) +
+  geom_histogram(binwidth = 1000) +
+  labs(
+    x = "Population density",
+    y = "Count",
+    title = "Population density of midwesten counties",
+    subtitle = "Binwidth = 1000"
+)
+
+# Plot Number 3
+ggplot(midwest, aes(x = popdensity)) +
+  geom_histogram(binwidth = 10000) +
+  labs(
+    x = "Population density",
+    y = "Count",
+    title = "Population density of midwesten counties",
+    subtitle = "Binwidth = 10000"
+)
+
+# Plot Number 4
+ggplot(midwest, aes(x = popdensity)) +
+  geom_histogram(binwidth = 100000) +
+  labs(
+    x = "Population density",
+    y = "Count",
+    title = "Population density of midwesten counties",
+    subtitle = "Binwidth = 100000"
+)
+
+```
 
 ### Question 2
 
